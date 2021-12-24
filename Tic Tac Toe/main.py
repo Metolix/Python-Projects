@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import sys
 
 
 # Create the constants (go ahead and experiment with different values)
@@ -213,6 +214,9 @@ def main():
     while True:
         coords = None
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
             if event.type == MOUSEBUTTONUP:
                 coords = getSpotClicked(event.pos[0], event.pos[1])
                 if not coords and NEW_RECT.collidepoint(event.pos):
@@ -261,7 +265,6 @@ def main():
 
             drawBoard(board, msg)
             pygame.display.update()
-
-
+    
 if __name__ == '__main__':
     main()
